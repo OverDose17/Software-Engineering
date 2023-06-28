@@ -1,0 +1,13 @@
+asgiref @ file:///C:/ci_311/asgiref_1676448296195/work
+beautifulsoup4==4.12.2
+cffi @ file:///C:/ci_311/cffi_1676423759166/work
+cryptography @ file:///C:/b/abs_b28tzldafl/croot/cryptography_1686613103834/work
+Django @ file:///C:/ci_311/django_1676469589007/work
+django-bootstrap4==23.1
+django-forms-bootstrap==3.1.0
+Pillow==9.2.0
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+PyMySQL @ file:///C:/ci_311/pymysql_1676454444121/work
+soupsieve==2.4.1
+sqlparse @ file:///C:/ci_311/sqlparse_1676456541280/work
+tzdata @ file:///tmp/build/80754af9/python-tzdata_1611693927741/work

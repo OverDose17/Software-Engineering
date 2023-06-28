@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Event
+{% endblock %}
+
+{% block extracss %}
+	<style>
+		.event{
+			position: relative;
+			margin-top: 30px;
+			bottom: 0;
+			left: 50px;
+            width: 1000px;
+		}
+
+        fieldset {
+            margin-left: 20px;
+            margin-bottom: 1em ;
+            border: 1px solid #666 ;
+            padding:1px !important;
+            width: 900px;
+        }
+
+        legend {
+            margin-left: 20px;
+            padding: 10px 10px;
+            float:none;
+            width:auto;
+        }
+
+        .event-input {
+            margin: 20px;
+        }
+	</style>
+{% endblock extracss %}
+
+{% block content %}
+    <div class="event">
+		<div class="clearfix">
+			<a class="btn btn-info left" href="{% url 'calendarSystem:calendar' %}?{{ date }}"> Calendar </a> 
+		</div>
+		<br>
+	</div>	
+    <center><h1>Edit Event</h1></center>
+    <form method="POST" action="/cal/event/update/{{event.event_id}}">
+        <fieldset>
+            <legend>Data Input:</legend>
+            {% csrf_token %}
+            <div class="event-input">
+                <table class="form form-table">
+                    <tbody>
+                        {% if flagadmin %}
+                        <tr>
+                            <th>
+                                <label for="id_title">Title:</label>
+                            </th>
+                            <td>
+                                <input type="text" name="title" maxlength="200" required="" id="id_title" value="{{event.title}}" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_description">Description:</label>
+                            </th>
+                            <td>
+                                <textarea name="description" cols="40" rows="10" required="" id="id_description" readonly>{{event.description}}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_end_time">Event Type:</label>
+                            </th>
+                            <td>
+                                <select class="form-control" name="event_type" required >
+                                    <option value={{event.event_type}}>{{type}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_start_time">Start time:</label>
+                            </th>
+                            <td>{{event.start_time}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="delete" class="btn btn-info right">
+                                    <a href="{% url 'calendarSystem:calendar' %}?{{ date }}">Back</a>
+                                </button>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <th>
+                                <label for="id_title">Title:</label>
+                            </th>
+                            <td>
+                                <input type="text" name="title" maxlength="200" required="" id="id_title" value="{{event.title}}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_description">Description:</label>
+                            </th>
+                            <td>
+                                <textarea name="description" cols="40" rows="10" required="" id="id_description">{{event.description}}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="even_type">Event Type:</label>
+                            </th>
+                            <td>
+                                {% if flagtype == 1 %}
+                                    <select class="form-control" name="event_type" required>
+                                        <option value={{event.event_type}}>{{type}}</option>
+                                        <option value="2">Academic</option>
+                                        <option value="3">Not Specified</option>
+                                    </select>
+                                {% elif flagtype == 2 %}
+                                    <select class="form-control" name="event_type" required>
+                                        <option value={{event.event_type}}>{{type}}</option>
+                                        <option value="1">Lifestyle</option>
+                                        <option value="3">Not Specified</option>
+                                    </select>
+                                {% elif flagtype == 3 %}
+                                    <select class="form-control" name="event_type" required>
+                                        <option value={{event.event_type}}>{{type}}</option>
+                                        <option value="1">Lifestyle</option>
+                                        <option value="2">Academic</option>
+                                    </select>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="id_start_time">Start time:</label>
+                            </th>
+                            <td>{{event.start_time}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-info right" name = "update"> Submit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-info right", name = "delete">
+                                    <a href="/cal/event/delete/{{event.event_id}}/">Delete</a>
+                                </button>
+                            </td>
+                        </tr> 
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

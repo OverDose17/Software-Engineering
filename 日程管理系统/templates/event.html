@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Event
+{% endblock %}
+
+{% block extracss %}
+	<style>
+		.event{
+			position: relative;
+			margin-top: 30px;
+			bottom: 0;
+			left: 50px;
+            width: 1000px;
+		}
+        fieldset {
+            margin-bottom: 1em ;
+            border: 1px solid #666 ;
+            padding:1px !important;
+        }
+
+        legend {
+            margin-left: 20px;
+            padding: 10px 10px;
+            float:none;
+            width:auto;
+        }
+        .event-input {
+            margin: 20px;
+        }
+	</style>
+{% endblock extracss %}
+
+{% block content %}
+	<div class="event">
+		<div class="clearfix">
+			<a class="btn btn-info left" href="{% url 'calendarSystem:calendar' %}?{{ caldate }}"> Calendar </a>
+		</div>
+		<br>
+	</div>	
+	<center><h1>New Event</h1></center>
+	<div class="event">
+		<form method="post">
+			<fieldset>
+                <legend>Data Input:</legend>
+				{% csrf_token %}
+				<div class="event-input">
+					<table class="form form-table">
+						<tbody>
+							<tr>
+								<th>
+									<label for="id_title">Title:</label>
+								</th>
+								<td>
+									<input type="text" name="title" maxlength="200" required="" id="id_title">
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="id_description">Description:</label>
+								</th>
+								<td>
+									<textarea name="description" cols="40" rows="10" required="" id="id_description"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="event_type">Type:</label>
+								</th>
+								<td>		
+									<select class="form-control" name="event_type" required>
+										<option value="1">Lifestyle</option>
+										<option value="2">Academic</option>
+										<option value="3" selected>Not Specified</option>
+									</select>					
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<label for="id_start_time">Start time:</label>
+								</th>
+								<td>
+									<input type="datetime-local" name="start_time" required="" id="id_start_time" >
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2"><button type="submit" class="btn btn-info right"> Submit </button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>		
+			</fieldset>
+		</form>
+	</div>
+{% endblock %}

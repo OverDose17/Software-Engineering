@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}   
+
+{% block title %}
+Calendar
+{% endblock %}
+
+{% block extracss %}
+{% endblock extracss %}
+
+{% block content %}
+    <!-- portfolio -->
+    <div class="portfolio">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage text_align_left">
+                    <h2>All About Beihang</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="ho_nf" class="portfolio_main text_align_left">
+                    <figure>
+                    <img src="{% static 'images/prot1.jpg' %}" alt="#"/>
+                    <div class="portfolio_text">
+                        <h3>Introduction</h3>
+                        <p>Beihang University, previously known as the Beijing University of Aeronautics and Astronautics (Chinese: 北京航空航天大学), abbreviated as BUAA or Beihang (Chinese: 北航), is a national public research university located in Beijing, China.</p>
+                    </div>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="ho_nf" class="portfolio_main text_align_left">
+                    <figure>
+                    <img src="{% static 'images/prot2.jpg' %}" alt="#"/>
+                    <div class="portfolio_text">
+                        <h3>History</h3>
+                        <p>Beihang was formed in 1952 from a merger of the aeronautical departments of Tsinghua University, Peiyang University, Xiamen University, Sichuan University, Yunnan University, Northwestern Engineering College, North China University, etc.</p>
+                    </div>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="ho_nf" class="portfolio_main text_align_left">
+                    <figure>
+                    <img src="{% static 'images/prot3.jpg' %}" alt="#"/>
+                    <div class="portfolio_text">
+                        <h3>Coumputer Science</h3>
+                        <p>Beihang University's School of Computer Science established in 1958, excelling in research and talent cultivation. It aims to become a world-class institution through innovation, international collaborations, and academic excellence.</p>
+                    </div>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="ho_nf" class="portfolio_main text_align_left">
+                    <figure>
+                    <img src="{% static 'images/prot4.jpg' %}" alt="#"/>
+                    <div class="portfolio_text">
+
+                        <h3>International College</h3>
+                        <p>The International College of Beihang University offers diverse English-taught programs, fostering global perspectives and interdisciplinary learning to cultivate future leaders in technology and science.</p>
+                    </div>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <a class="read_more" href="/">Back</a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- end portfolio -->
+    <footer>
+        <div class="footer">
+           <div class="container">
+              <div class="row">
+                 <div class="col-md-3">
+                    <a class="logo_footer" href="#"><img src="{% static 'images/logo.png' %}" alt="#" /></a>
+                 </div>
+                 <div class="col-md-9">
+                    <form class="newslatter_form">
+                       <input class="ente" placeholder="Enter your email" type="text" name="Enter your email">
+                       <button class="subs_btn">Subscribe Now</button>
+                    </form>
+                 </div>
+                 
+              </div>
+           </div>
+           <div class="copyright text_align_left">
+              <div class="container">
+                 <div class="row d_flex">
+                    <div class="col-md-6">
+                       <p>© 2023 Beihang University. </p>
+                    </div>
+                    <div class="col-md-6">
+                       <ul class="social_icon text_align_center">
+                          <li> <a href="Javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
+                          <li> <a href="Javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                          <li> <a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                          <li> <a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                          <li> <a href="Javascript:void(0)"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+    </footer> 
+{% endblock %}

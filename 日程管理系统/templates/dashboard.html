@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}   
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+	<!-- start slider section -->
+	<div id="top_section" class=" banner_main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<div class="container-fluid">
+									<div class="carousel-caption relative">
+										<div class="bluid">
+											<h1>Creative  <br>Calendar </h1>
+											<p>There are many great day <br>that start by making organized calendar
+											</p>
+											<a class="read_more" href="{% url 'users:about' %}">About Beihang </a>
+											<a class="read_more" href="{% url 'calendarSystem:calendar' %}">Calendar </a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>         
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+					<a class="logo_footer" href="#"><img src="{% static 'images/logo.png' %}" alt="#" /></a>
+					</div>
+					<div class="col-md-9">
+					<form action="/subscription/" class="newslatter_form" method="POST">
+						{% csrf_token %}
+						
+						<input class="ente" placeholder="Enter your email" type="email" name="email">
+						<button class="subs_btn">Subscribe Now</button>
+					</form>
+					</div>
+					
+				</div>
+			</div>
+			<div class="copyright text_align_left">
+				<div class="container">
+					<div class="row d_flex">
+					<div class="col-md-6">
+						<p>© 2023 Beihang University. </p>
+					</div>
+					<div class="col-md-6">
+						<ul class="social_icon text_align_center">
+							<li> <a href="Javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
+							<li> <a href="Javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+							<li> <a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+							<li> <a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							<li> <a href="Javascript:void(0)"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer> 
+{% endblock %}

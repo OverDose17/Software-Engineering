@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Statistic
+{% endblock %}
+
+{% block extracss %}
+	<style>
+		.stat{
+			position: relative;
+			bottom: 0;
+			left: 50px;
+		}
+
+		table.table1 {
+			border-collapse: collapse;
+			border: 2px solid rgb(200,200,200);
+			letter-spacing: 1px;
+			font-size: 0.8rem;
+		}
+
+		table.nested {
+			margin-left: auto;
+ 			margin-right: auto;
+			letter-spacing: 1px;
+			font-size: 0.8rem;
+		}
+
+		td.td1, th.th1 {
+			border: 1px solid rgb(190,190,190);
+			padding: 10px 20px;
+			text-align: center;
+		}
+
+		th.th1 {
+			background-color: rgb(235,235,235);	
+			text-align: center;
+		}
+
+		td.td1 {
+			text-align: center;
+		}
+
+		td.td2 {
+			text-align: center;
+		}
+
+		tr:nth-child(even) td {
+			background-color: rgb(250,250,250);
+		}
+
+		tr:nth-child(odd) td {
+			background-color: rgb(245,245,245);
+		}
+
+		caption {
+			padding: 10px;
+		}
+	</style>
+{% endblock extracss %}
+
+{% block content %}
+	<br>
+	<div class="stat" >
+		<div class="clearfix">
+			<a class="btn btn-info left" href="{% url 'calendarSystem:calendar' %}?{{ date }}"> Calendar </a>
+		</div>
+		<center><h1>Statistic of {{m}} {{y}}</h1><p>, {{ user.username }}</p></center>
+		<h2>Number of Task per-day:</h2>
+		<div style="width:1000px; height:550px">
+			<canvas id="myChart"></canvas>
+		</div>
+		<h2>Task Type:</h2>
+		<div style="height: 350px;">
+			<div style="width:240px;height:300px">
+				<canvas id="mychart2" ></canvas>
+			</div>
+		</div>
+		<h2>Task Details:</h2>
+		<div style="width:1000px; height:450px; ">
+			<table class="table1" style="margin-bottom: 50px;">
+				<tr class="tr1">
+					<th class="th1">Type</th>
+					<th class="th1">Name</th>
+					<th class="th1">Countdown</th>
+				</tr>
+				<tr class="tr1">
+					<td class="td1">Lifestyle</td>
+					<td class="td1">
+						<table class="nested">
+							{% for a in typea %}
+							<tr >
+								<td class="td2" text-align: center><a href="/cal/event/edit/{{a.event_id}}"> {{a.title}}</a></td>
+							</tr>
+							{% endfor %}
+						</table>
+					</td>
+					<td class="td1">
+						<table class="nested">
+							{% for ca in countinga %}
+								{% if ca != "expired" %}
+									<tr >
+										<td class="td2" text-align: center> {{ca}} days </td>
+									</tr>
+								{% else %}
+									<tr >
+										<td class="td2" text-align: center> {{ca}} </td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</table>
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td class="td1">Academic</td>
+					<td class="td1">
+						<table class="nested">
+							{% for b in typeb %}
+							<tr>
+								<td class="td2" text-align: center><a href="/cal/event/edit/{{b.event_id}}"> {{b.title}}</a></td>
+							</tr>
+							{% endfor %}
+						</table>
+					</td>
+					<td class="td1">
+						<table class="nested">
+							{% for cb in countingb %}
+								{% if cb != "expired" %}
+									<tr >
+										<td class="td2" text-align: center> {{cb}} days </td>
+									</tr>
+								{% else %}
+									<tr >
+										<td class="td2" text-align: center> {{cb}} </td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td class="td1">Not Spesifiec</td>
+					<td class="td1">
+						<table class="nested">
+							{% for c in typec %}
+							<tr >
+								<td class="td2" text-align: center><a href="/cal/event/edit/{{c.event_id}}"> {{c.title}}</a></td>
+							</tr>
+							{% endfor %}
+						</table>
+					</td>
+					<td class="td1">
+						<table class="nested">
+							{% for cc in countingc %}
+								{% if cc != "expired" %}
+									<tr >
+										<td class="td2" text-align: center> {{cc}} days </td>
+									</tr>
+								{% else %}
+									<tr >
+										<td class="td2" text-align: center> {{cc}} </td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		const ctx = document.getElementById('myChart');
+		new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: {{label|safe}},
+				datasets: [{
+				label: 'Number of Task',
+				data: {{data|safe}},
+				borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+				y: {
+					beginAtZero: true
+				}
+				}
+			}
+		});
+		var ctx_2 = document.getElementById("mychart2").getContext('2d');
+            var data_2 = {
+                datasets: [{
+                    data: {{types|safe}},
+                    backgroundColor: [
+                        '#3c8dbc',
+                        '#f56954',
+                        '#808080',
+                    ],
+                }],
+                labels: ['Lifestyle',
+                    'Academic',
+                    'Not Specified']
+            };
+            var myDoughnutChart_2 = new Chart(ctx_2, {
+                type: 'pie',
+                data: data_2,
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12
+                        }
+                    }
+                }
+            });
+	</script>
+{% endblock %}
